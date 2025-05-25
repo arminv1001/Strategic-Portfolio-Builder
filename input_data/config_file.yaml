@@ -1,0 +1,39 @@
+project_name: "Strategic Portfolio Optimization"
+plot_picture: false
+tickers:
+  - GLD
+  - TLSA
+  - MSFT
+  - AAPL
+  - GOOGL
+  - MBG.DE
+
+benchmark_ticker: "SPY"
+start_date: 2010-01-01
+end_date: null
+log_returns: false
+start_capital: 1
+risk_aversion: 1
+dataset_split: 0.8
+
+risk_free_rate:
+  - manual_risk_free_rate: true
+    value_risk_free_rate: 0.025
+  - online_risk_free_rate: false
+    series: "DGS3MO"
+
+stats_frequency: 12
+data_frequency: "1mo"
+
+capm_health:
+  beta_threshold: 2
+  alpha_threshold: 0.0
+  sharpe_ratio_threshold: 0.5
+
+filter:
+  jarque_bera_threshold: 0.05
+
+conditioning:
+    activate: false
+    allow_shorting: false
+    max_allocation_threshold: 0.80
