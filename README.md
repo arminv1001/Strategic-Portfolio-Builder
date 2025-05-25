@@ -1,5 +1,8 @@
-**Strategic Portfolio Optimization – Technical Memo**
+# Strategic Portfolio Optimization
+My goal was to build a pipeline for the automated evaluation of strategic investment portfolios grounded in financial theory, demonstrating a transparent approach to asset allocation in a hypothetical investment scenario. To achieve this, I employed concepts such as the mean–variance frontier, the capital allocation line, and the Capital Asset Pricing Model (CAPM).
 
+---
+![Picture not found](./output_data/Strategic%20Portfolio%20Optimization/mean_variance_frontier.png)
 
 ## 1 Project Set‑Up
 
@@ -11,7 +14,7 @@ Strategic_Portfolio/
 │   └── config_file.yaml
 ├── requirements.txt
 ├── strategic_portfolio_analysis.py
-└── output_data/         # generated automatically
+└── output_data/         
 ```
 
 ### 1.2 Environment & installation
@@ -54,11 +57,11 @@ Changing the YAML is enough to re‑run the entire workflow with a different ass
 
 ## 2 Strategy Logic (inside `strategic_portfolio_analysis.py`)
 
-1. **Data ingestion** – monthly *Adj Close* prices are fetched from Yahoo Finance; missing values are forward‑filled.fileciteturn2file6
-2. **Normality filter** – each asset’s returns undergo a Jarque–Bera test; assets failing the `0.05` threshold are dropped.fileciteturn2file10
-3. **Mean‑Variance engine** – expected return vector `μ` and covariance `Σ` are assembled; the (unconstrained or constrained) efficient frontier is traced, and the tangency portfolio index computed by maximising Sharpe vs the risk‑free rate.fileciteturn2file18
-4. **Complete portfolio** – given user risk‑aversion *A*, capital is allocated `y` % to the tangency portfolio, `(1‑y)` % to cash. The weight is capped in `[0,1]` to avoid leverage.fileciteturn2file16
-5. **CAPM decomposition & health check** – in‑sample alpha/β are benchmarked; yellow/red flags dynamically bump *A* upward, making the back‑test more conservative.fileciteturn2file4
+1. **Data ingestion** – monthly *Adj Close* prices are fetched from Yahoo Finance; missing values are forward‑filled.
+2. **Normality filter** – each asset’s returns undergo a Jarque–Bera test; assets failing the `0.05` threshold are dropped.
+3. **Mean‑Variance engine** – expected return vector `μ` and covariance `Σ` are assembled; the (unconstrained or constrained) efficient frontier is traced, and the tangency portfolio index computed by maximising Sharpe vs the risk‑free rate.
+4. **Complete portfolio** – given user risk‑aversion *A*, capital is allocated `y` % to the tangency portfolio, `(1‑y)` % to cash. The weight is capped in `[0,1]` to avoid leverage.
+5. **CAPM decomposition & health check** – in‑sample alpha/β are benchmarked; yellow/red flags dynamically bump *A* upward, making the back‑test more conservative.
 6. **Back‑test & plotting** – the forward sample is run, plotting portfolio value & draw‑down; summary stats land in `output_data/stats_asset_summary.json` 
 
 ---
@@ -73,7 +76,7 @@ Changing the YAML is enough to re‑run the entire workflow with a different ass
 
 ---
 
-## 4 Headline Numbers
+## 4 Backtest Results
 
 A snapshot of `stats_asset_summary.json` shows both ex‑ante expectations and realised figures:
 
@@ -89,4 +92,5 @@ A snapshot of `stats_asset_summary.json` shows both ex‑ante expectations and r
 
 **Interpretation** – although the realised return lagged the ambitious in‑sample forecast, the risk came in far lower, and alpha flipped from negative to positive, delivering a respectable Sharpe above the health hurdle. The strategy therefore remains fully deployable, with no red flags triggered.
 
+![Picture not found](./output_data/Strategic%20Portfolio%20Optimization/portfolio_performance.png)
 
