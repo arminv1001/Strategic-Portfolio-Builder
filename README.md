@@ -36,7 +36,7 @@ Strategic_Portfolio/
 
 ### 1.3 Configuration via YAML
 
-All run‑time parameters live in `input_data/config_file.yaml`. Key knobs (excerpt shown right)fileciteturn2file7:
+All run‑time parameters live in `input_data/config_file.yaml`. Key knobs (excerpt shown right):
 
 | Section                                  | Purpose                                                    |
 | ---------------------------------------- | ---------------------------------------------------------- |
@@ -75,7 +75,7 @@ Changing the YAML is enough to re‑run the entire workflow with a different ass
 
 ## 4 Headline Numbers
 
-A snapshot of `stats_asset_summary.json` shows both ex‑ante expectations and realised figures:fileciteturn2file1
+A snapshot of `stats_asset_summary.json` shows both ex‑ante expectations and realised figures:
 
 | Metric           | Expected |    Realised | Comment                                                    |
 | ---------------- | -------: | ----------: | ---------------------------------------------------------- |
